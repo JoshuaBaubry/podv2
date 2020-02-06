@@ -79,7 +79,7 @@ SHIB_URL = getattr(
 USE_SHIB = getattr(
         django_settings, 'USE_SHIB', False)
 
-    
+
 def context_settings(request):
     new_settings = {}
     for sett in TEMPLATE_VISIBLE_SETTINGS:

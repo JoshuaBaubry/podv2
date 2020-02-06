@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'pod.recorder',
     'pod.lti',
     'pod.custom',
+    'shibboleth'
 ]
 
 ##
@@ -66,15 +67,16 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'shibboleth.middleware.ShibbolethRemoteUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Pages statiques
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
-
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
+    'shibboleth.backends.ShibbolethRemoteUserBackend'
 )
 
 ##
@@ -101,9 +103,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                 'shibboleth.context_processors.login_link',
+                'shibboleth.context_processors.logout_link',
                 # Local contexts
                 'pod.main.context_processors.context_settings',
                 'pod.main.context_processors.context_navbar'
+                
             ],
         },
     },

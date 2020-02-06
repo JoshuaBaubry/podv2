@@ -156,6 +156,11 @@ urlpatterns += [url(r'^', include('pod.completion.urls')), ]
 urlpatterns += [url(r'^', include('pod.chapter.urls')), ]
 urlpatterns += [url(r'^', include('pod.playlist.urls')), ]
 
+
+urlpatterns += [
+    url(r'^shib/', include('shibboleth.urls', namespace='shibboleth')),
+]
+
 if getattr(settings, 'USE_PODFILE', False):
     urlpatterns += [url(r'^podfile/', include('pod.podfile.urls')), ]
 
@@ -202,6 +207,7 @@ urlpatterns += [
     url(r'^(?P<slug_c>[\-\d\w]+)/(?P<slug_t>[\-\d\w]+)'
         r'/video/(?P<slug>[\-\d\w]+)/$', video, name='video'),
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

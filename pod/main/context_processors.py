@@ -74,8 +74,12 @@ USE_STATS_VIEW = getattr(
 
 ALLOW_MANUAL_RECORDING_CLAIMING = getattr(
         django_settings, 'ALLOW_MANUAL_RECORDING_CLAIMING', False)
+SHIB_URL = getattr(
+        django_settings, 'SHIB_URL', "/idp/shibboleth.sso/Login")
+USE_SHIB = getattr(
+        django_settings, 'USE_SHIB', False)
 
-
+    
 def context_settings(request):
     new_settings = {}
     for sett in TEMPLATE_VISIBLE_SETTINGS:
@@ -94,6 +98,10 @@ def context_settings(request):
     new_settings['USE_STATS_VIEW'] = USE_STATS_VIEW
     new_settings['ALLOW_MANUAL_RECORDING_CLAIMING'] = \
         ALLOW_MANUAL_RECORDING_CLAIMING
+    new_settings['SHIB_URL'] = \
+        SHIB_URL
+    new_settings['USE_SHIB'] = \
+        USE_SHIB
     return new_settings
 
 

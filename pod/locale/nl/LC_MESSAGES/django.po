@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-21 13:27+0000\n"
+"POT-Creation-Date: 2020-02-21 13:36+0000\n"
 "PO-Revision-Date: 2018-07-03 13:41+0100\n"
 "Last-Translator: Nicolas <nicolas.can@univ-lille1.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,10 +106,6 @@ msgstr ""
 
 #: pod/authentication/templates/authentication/login.html:15
 msgid "Single sign on"
-msgstr ""
-
-#: pod/authentication/templates/authentication/login.html:18
-msgid "Identity Federation"
 msgstr ""
 
 #: pod/authentication/templates/authentication/login.html:20

@@ -13,7 +13,6 @@ from django.contrib.auth.models import Group
 
 from pod.video.models import Video
 from pod.main.models import get_nextautoincrement
-from select2 import fields as select2_fields
 
 import os
 import datetime
@@ -111,7 +110,7 @@ class Enrichment(models.Model):
         ('embed', _("embed")),
     )
 
-    video = select2_fields.ForeignKey(Video, verbose_name=_('video'))
+    video = models.ForeignKey(Video, on_delete=models.DO_NOTHING, verbose_name=_('video')) #select2
     title = models.CharField(_('title'), max_length=100)
     slug = models.SlugField(
         _('slug'),
@@ -141,12 +140,13 @@ class Enrichment(models.Model):
         blank=True)
 
     image = models.ForeignKey(
-        CustomImageModel, verbose_name=_('Image'), null=True, blank=True)
+        CustomImageModel, on_delete=models.DO_NOTHING, verbose_name=_('Image'), null=True, blank=True)
     document = models.ForeignKey(
         CustomFileModel,
         verbose_name=_('Document'),
         null=True,
         blank=True,
+        on_delete=models.DO_NOTHING,
         help_text=_(u'Integrate an document (PDF, text, html)'))
     richtext = RichTextField(_('Richtext'), config_name='complete', blank=True)
     weblink = models.URLField(
@@ -294,6 +294,7 @@ class EnrichmentVtt(models.Model):
     src = models.ForeignKey(CustomFileModel,
                             blank=True,
                             null=True,
+                            on_delete=models.DO_NOTHING,
                             verbose_name=_('Subtitle file'))
 
     @property
@@ -319,10 +320,10 @@ class EnrichmentVtt(models.Model):
 
 
 class EnrichmentGroup(models.Model):
-    video = select2_fields.OneToOneField(Video, verbose_name=_('Video'),
+    video = models.OneToOneField(Video, verbose_name=_('Video'), #select2
                                          # editable=False, null=True,
                                          on_delete=models.CASCADE)
-    groups = select2_fields.ManyToManyField(
+    groups = models.ManyToManyField( #select2
         Group, blank=True, verbose_name=_('Groups'),
         help_text=_('Select one or more groups who'
                     ' can access to the'

@@ -148,7 +148,7 @@ urlpatterns = [
     url(r'^download/$', download_file, name='download_file'),
 
     # django-select2-form
-    url(r'^select2/', include('select2.urls')),
+    #url(r'^select2/', include('select2.urls')),
 
     # custom
     url(r'^custom/', include('pod.custom.urls')),

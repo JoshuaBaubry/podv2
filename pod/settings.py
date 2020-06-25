@@ -33,12 +33,10 @@ INSTALLED_APPS = [
     'tagging',
     'cas',
     'captcha',
-    'progressbarupload',
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
     'lti_provider',
-    'select2',
     # Pod Applications
     'pod.main',
     'django.contrib.admin',  # put it here for template override

@@ -11,7 +11,6 @@ from django.db.models.signals import post_save
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 from django.contrib.sites.models import Site
-from select2 import fields as select2_fields
 from pod.video.models import Type
 
 RECORDER_TYPE = getattr(
@@ -54,7 +53,7 @@ class Recorder(models.Model):
     salt = models.CharField(_('salt'), max_length=50, blank=True,
                             help_text=_('Recorder salt.'))
     # Manager of the recorder who received mails
-    user = select2_fields.ForeignKey(
+    user = models.ForeignKey( #select2
         User, on_delete=models.CASCADE,
         limit_choices_to={'is_staff': True}, help_text=_(
             'Manager of this recorder. This manager will receive recorder '
@@ -107,7 +106,7 @@ class Recording(models.Model):
                                  default=DEFAULT_RECORDER_ID,
                                  help_text=_('Recorder that made this '
                                              'recording.'))
-    user = select2_fields.ForeignKey(User, on_delete=models.CASCADE,
+    user = models.ForeignKey(User, on_delete=models.CASCADE, #select2
                                      limit_choices_to={'is_staff': True},
                                      default=DEFAULT_RECORDER_USER_ID,
                                      help_text=_
